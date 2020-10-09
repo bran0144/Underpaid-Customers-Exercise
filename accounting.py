@@ -1,24 +1,27 @@
 melon_cost = 1.00
 
-def customer_list(file_path):
+def price_comparison(file_path):
+    """Function takes list of customers and compares price paid to price expected"""
 
-    log = open(file_path)
+    log = open(file_path)   #opens path to file
 
-    for line in log:
-        line = line.rstrip()
-        words = line.split('|')
-        customer_name = words[0]
-        customer_melons = words[1]
-        customer_paid = words[2]
+    for line in log:        #iterates over file
+        line = line.rstrip()    #strips white space from right side
+        words = line.split('|')     #splits string by delimiter '\'
+        customer_name = words[1]    #chooses customer name 
+        customer_melons = float(words[2])   #chooses and converts # of melons purchased
+        customer_paid = float(words[3])     #chooses and converts price paid
 
-    expected_amount = customer_melons * melon_cost
+    expected_amount = customer_melons * melon_cost  #calculates expected amount based on cost and # of melons
 
-    if customer_paid != expected_amount:
-        print(f"{customer_name} paid ${customer_paid:.2f},",
+    if customer_paid != expected_amount:        #if customer paid a different amount that expected
+        print(f"{customer_name} paid ${customer_paid:.2f},",    #print statement to compare expected vs paid amount
           f"expected ${expected_amount:.2f}"
           )
 
-"""
+price_comparison("customer-orders.txt") #calls function on 'customer-orders.txt"
+
+"""OLD CODE to be replaced
 customer1_name = "Joe"
 customer1_melons = 5
 customer1_paid = 5.00
